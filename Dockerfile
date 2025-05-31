@@ -12,4 +12,4 @@ RUN bun build --compile --minify --sourcemap ./src/index.ts --outfile myapp
 
 EXPOSE 3000
 
-CMD ["myapp"]
+CMD ["./myapp"]

@@ -20,11 +20,15 @@ const authMiddleware = createMiddleware<{
 }>(async (c, next) => {
   const token = c.req.header("Authorization")?.split?.(" ")?.[1] || ""
 
-  if (!token) throw new HTTPException(400, { message: "token not found" });
+  if (!token) {
+    console.log("token not found")
+    throw new HTTPException(400, { message: "token not found" })
+  }
 
   try {
     await verify(token, JWT_SECRET)
   } catch (error) {
+    console.log("verification failed")
     throw new HTTPException(403, { message: "invalid token" })
   }
 
